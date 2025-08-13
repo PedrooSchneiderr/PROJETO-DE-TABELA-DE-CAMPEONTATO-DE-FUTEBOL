@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "campeonato.h": "c",
+        "string.h": "c",
+        "stdlib.h": "c"
+    }
+}

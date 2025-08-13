@@ -1,0 +1,25 @@
+Instruções para Compilação e Execução do Projeto de Gerenciamento de Times
+
+Este projeto é um sistema  de gerenciamento de times de futebol do Campeonato Catarinense em C, que utiliza um arquivo CSV para salvar os dados como se fosse um DB e usar alocação dinâmica de memória para alterar os registros de cada um dos times.
+
+* Arquivos do Projeto:
+
+- 'main.c': Contém a função principal do programa e o menu de interação com o usuário.
+- 'campeonato.h': Arquivo de cabeçalho da biblioteca, com as definições da estrutura `Time` e as declarações das funções.
+- 'campeonato.c': Implementação das funções da biblioteca para manipulação dos dados dos times.
+- 'dados.csv': Arquivo CSV que serve como "banco de dados" para armazenar as informações dos times.
+
+* Como Compilar:
+gcc main.c campeonato.c -o campeonato
+
+* Como Executar:
+
+./campeonato
+
+* Caminho para a pasta:
+
+cd C:\Arquivos\Arquivos facul\lpg\trabalho final
+
+O programa então exibirá um menu no console, permitindo que você interaja com o sistema de gerenciamento de times (listar, inserir, remover, editar e buscar times, além de salvar e sair).
+
+
