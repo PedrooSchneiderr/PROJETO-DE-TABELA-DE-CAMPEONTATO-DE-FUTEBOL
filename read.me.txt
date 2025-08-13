@@ -1,25 +1,56 @@
-Instruções para Compilação e Execução do Projeto de Gerenciamento de Times
+# Sistema de Gerenciamento de Times em C
 
-Este projeto é um sistema  de gerenciamento de times de futebol do Campeonato Catarinense em C, que utiliza um arquivo CSV para salvar os dados como se fosse um DB e usar alocação dinâmica de memória para alterar os registros de cada um dos times.
+Este projeto consiste em um sistema de gerenciamento para times de futebol, desenvolvido na linguagem C. O programa permite ao usuário realizar operações básicas de cadastro, como listar, inserir, editar, remover e buscar times. Os dados são persistidos em um arquivo de texto no formato CSV (`dados.csv`), que funciona como uma base de dados simplificada. Um dos principais aspectos técnicos do projeto é o uso de alocação dinâmica de memória para gerenciar a lista de times, permitindo que ela cresça ou diminua conforme a necessidade, sem um limite fixo de registros.
 
-* Arquivos do Projeto:
+---
 
-- 'main.c': Contém a função principal do programa e o menu de interação com o usuário.
-- 'campeonato.h': Arquivo de cabeçalho da biblioteca, com as definições da estrutura `Time` e as declarações das funções.
-- 'campeonato.c': Implementação das funções da biblioteca para manipulação dos dados dos times.
-- 'dados.csv': Arquivo CSV que serve como "banco de dados" para armazenar as informações dos times.
+### Arquitetura e Componentes
 
-* Como Compilar:
+O sistema é modularizado em diferentes arquivos, cada um com uma responsabilidade clara, o que organiza o código e facilita a manutenção:
+
+* **`main.c`**: É o ponto de entrada do programa. Ele é responsável por exibir o menu interativo ao usuário e capturar suas escolhas. Com base na opção selecionada, este arquivo invoca as funções apropriadas da biblioteca `campeonato` para executar a operação desejada.
+* **`campeonato.h`**: O arquivo de cabeçalho. Ele define a estrutura de dados `Time` e declara os protótipos de todas as funções de manipulação de dados.
+* **`campeonato.c`**: Contém a lógica central do sistema. Ele implementa todas as funções declaradas em `campeonato.h`, como as rotinas para carregar, salvar, inserir, remover, editar e buscar os dados dos times.
+* **`dados.csv`**: Atua como o "banco de dados" do projeto, armazenando os registros dos times.
+
+---
+
+### Lógica de Funcionamento
+
+O programa opera em um ciclo interativo, gerenciando os dados em memória e persistindo-os em arquivo.
+
+1.  **Inicialização e Carga de Dados:** Ao iniciar, a função `carregar_times` lê o arquivo `dados.csv`, e para cada time encontrado, aloca memória dinamicamente para adicioná-lo a um array em memória.
+2.  **Menu Interativo:** Um menu em loop oferece as opções de listar, inserir, remover, editar e buscar times. Cada opção chama uma função específica que manipula o array de times em memória.
+3.  **Gerenciamento de Memória:** Funções como `inserir_time` e `remover_time` utilizam `realloc` para ajustar o tamanho do array dinamicamente, otimizando o uso da memória.
+4.  **Salvamento e Encerramento:** Ao escolher sair, a função `salvar_times` sobrescreve o arquivo `dados.csv` com os dados atualizados da memória. Em seguida, `liberar_memoria` é chamada para evitar vazamentos de memória, encerrando o programa de forma segura.
+
+---
+### Como Compilar e Executar
+
+**Compilar:**
+```bash
 gcc main.c campeonato.c -o campeonato
 
-* Como Executar:
 
-./campeonato
+### Método 2: Pelo Terminal (Fluxo Git)
 
-* Caminho para a pasta:
+Se você preferir continuar praticando o fluxo do Git:
 
-cd C:\Arquivos\Arquivos facul\lpg\trabalho final
+1.  **Abra o arquivo local:** No seu computador (na pasta do projeto), abra o arquivo `read.me.txt` com um editor de texto.
+2.  **Substitua o conteúdo:** Apague o texto antigo e cole a descrição formatada em Markdown (o mesmo texto acima).
+3.  **Salve e renomeie o arquivo:** Salve o arquivo. Depois, no terminal (CMD ou WSL), na pasta do projeto, renomeie o arquivo:
+    * No **WSL**: `mv read.me.txt README.md`
+    * No **CMD**: `ren read.me.txt README.md`
+4.  **Use o Git para enviar a alteração:**
+    ```bash
+    # Adicione a mudança ao Git (o arquivo renomeado)
+    git add .
 
-O programa então exibirá um menu no console, permitindo que você interaja com o sistema de gerenciamento de times (listar, inserir, remover, editar e buscar times, além de salvar e sair).
+    # Crie um commit descrevendo a alteração
+    git commit -m "Atualiza README com descrição detalhada do projeto"
 
+    # Envie para o GitHub
+    git push
+    ```
 
+Ambos os métodos darão o mesmo resultado. O primeiro é mais visual e direto, enquanto o segundo é uma ótima prática para se acostumar com o ciclo de desenvolvimento usando Git.
